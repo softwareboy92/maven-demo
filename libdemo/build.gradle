@@ -28,13 +28,12 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
 }
 
 uploadArchives {
     repositories.mavenDeployer {
-        def mavenDirPath = file('aar.maventest')
-        // 本地存放目录(自行选择)，可放在gradle.properties文件中引用
-        repository(url: "file://${mavenDirPath.absolutePath}") // 必须双引号，单引号不会转义$
+        repository(url: uri('../repository'))
         pom.project {
             groupId "com.lib.maven" // 可以随意取，一般取包名
             artifactId "maven-demo" // 可以随意取，一般取库的名字

@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-apply plugin: 'maven'
+apply plugin:'maven'
 
 android {
     compileSdkVersion 28
@@ -17,6 +17,23 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/ASL2.0'
+    }
+
     productFlavors {
     }
 }
@@ -31,13 +48,38 @@ dependencies {
 
 }
 
+//uploadArchives {
+//    repositories.mavenDeployer {
+//        repository(url: uri('../repository'))
+//        pom.project {
+//            groupId "com.lib.maven" // 可以随意取，一般取包名
+//            artifactId "maven-demo" // 可以随意取，一般取库的名字
+//            version "1.0.0" // 版本号
+//        }
+//    }
+//}
+
 uploadArchives {
-    repositories.mavenDeployer {
-        repository(url: uri('../repository'))
-        pom.project {
-            groupId "com.lib.maven" // 可以随意取，一般取包名
-            artifactId "maven-demo" // 可以随意取，一般取库的名字
-            version "1.0.0" // 版本号
+    repositories {
+        mavenDeployer {
+            repository(url: uri("http://localhost:8081/nexus/content/repositories/releases/")) {
+                authentication(userName:'admin',password:'admin123')
+            }
+
+            pom.groupId = "com.lib.maven"
+            pom.artifactId = "maven-demo"
+            pom.version = "1.0.0"
+
+            pom.project {
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+            }
         }
     }
 }
+
+

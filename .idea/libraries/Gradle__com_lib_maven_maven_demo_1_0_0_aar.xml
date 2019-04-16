@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="Gradle: com.lib.maven:maven-demo:1.0.0@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/maven-demo-1.0.0.aar/ca32561d61bd93b069395591061aa6e3/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/maven-demo-1.0.0.aar/ca32561d61bd93b069395591061aa6e3/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
